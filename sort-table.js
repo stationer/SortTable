@@ -168,6 +168,12 @@ sortTable.init = function() {
         Tables = document.querySelectorAll("table.js-sort-table");
 
     for (var i = 0; i < Tables.length; i++) {
+        // Prevent repeat processing
+        if (Tables[i].hasAttribute('data-js-sort-table')) {
+            continue;
+        }
+
+        // Ensure table has a tHead element
         if (!Tables[i].tHead) {
             THead = document.createElement('thead');
             THead.appendChild(Tables[i].rows[0]);
@@ -175,6 +181,8 @@ sortTable.init = function() {
         } else {
             THead = Tables[i].tHead;
         }
+
+        // Attach click events to table header
         for (var j = 0; j < THead.rows[0].cells.length; j++) {
             THead.rows[0].cells[j].addEventListener('click', (function(Table, col) {
                 return function() {
@@ -182,6 +190,9 @@ sortTable.init = function() {
                 };
             })(Tables[i], j));
         }
+
+        // Mark table as processed
+        Tables[i].setAttribute('data-js-sort-table', 'true')
     }
 };
 
