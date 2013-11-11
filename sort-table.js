@@ -18,54 +18,54 @@
  * @returns void
  */
 function sortTable(Table, col) {
-	var sortClass;
+    var sortClass;
 
-	//get previous sort column
-	sortTable.sortCol = -1;
-	sortClass = Table.className.match(/js-sort-\d+/);
-	if (null != sortClass) {
-		sortTable.sortCol = sortClass[0].replace(/js-sort-/, '');
-		Table.className = Table.className.replace(new RegExp(' ?' + sortClass[0] + '\\b'), '');
-	}
+    //get previous sort column
+    sortTable.sortCol = -1;
+    sortClass = Table.className.match(/js-sort-\d+/);
+    if (null != sortClass) {
+        sortTable.sortCol = sortClass[0].replace(/js-sort-/, '');
+        Table.className = Table.className.replace(new RegExp(' ?' + sortClass[0] + '\\b'), '');
+    }
 
-	//get previous sort direction
-	sortTable.sortDir = 1;
-	sortClass = Table.className.match(/js-sort-(a|de)sc/);
-	if (null != sortClass && sortTable.sortCol == col) {
-		sortTable.sortDir = 'js-sort-asc' == sortClass[0] ? -1 : 1;
-	}
-	Table.className = Table.className.replace(/ ?js-sort-(a|de)sc/g, '');
+    //get previous sort direction
+    sortTable.sortDir = 1;
+    sortClass = Table.className.match(/js-sort-(a|de)sc/);
+    if (null != sortClass && sortTable.sortCol == col) {
+        sortTable.sortDir = 'js-sort-asc' == sortClass[0] ? -1 : 1;
+    }
+    Table.className = Table.className.replace(/ ?js-sort-(a|de)sc/g, '');
 
-	//update sort column
-	Table.className += ' js-sort-' + col;
-	sortTable.sortCol = col;
+    //update sort column
+    Table.className += ' js-sort-' + col;
+    sortTable.sortCol = col;
 
-	//update sort direction
-	Table.className += ' js-sort-' + (sortTable.sortDir == -1 ? 'desc' : 'asc');
+    //update sort direction
+    Table.className += ' js-sort-' + (sortTable.sortDir == -1 ? 'desc' : 'asc');
 
-	//get sort type
-	sortClass = Table.tHead.rows[0].cells[col].className.match(/js-sort-[-\w]+/);
-	if (null != sortClass) {
-		sortTable.sortFunc = sortClass[0].replace(/js-sort-/, '');
-	} else {
-		sortTable.sortFunc = 'string';
-	}
+    //get sort type
+    sortClass = Table.tHead.rows[0].cells[col].className.match(/js-sort-[-\w]+/);
+    if (null != sortClass) {
+        sortTable.sortFunc = sortClass[0].replace(/js-sort-/, '');
+    } else {
+        sortTable.sortFunc = 'string';
+    }
 
-	//sort!
-	var rows = [],
-		TBody = Table.tBodies[0];
+    //sort!
+    var rows = [],
+        TBody = Table.tBodies[0];
 
-	for (var i = 0; i < TBody.rows.length; i++) {
-		rows[i] = TBody.rows[i];
-	}
-	rows.sort(sortTable.compareRow);
+    for (var i = 0; i < TBody.rows.length; i++) {
+        rows[i] = TBody.rows[i];
+    }
+    rows.sort(sortTable.compareRow);
 
-	while (TBody.firstChild) {
-		TBody.removeChild(TBody.firstChild);
-	}
-	for (i = 0; i < rows.length; i++) {
-		TBody.appendChild(rows[i]);
-	}
+    while (TBody.firstChild) {
+        TBody.removeChild(TBody.firstChild);
+    }
+    for (i = 0; i < rows.length; i++) {
+        TBody.appendChild(rows[i]);
+    }
 }
 
 /**
@@ -76,14 +76,14 @@ function sortTable(Table, col) {
  * @returns {number} 1 if RowA is greater, -1 if RowB, 0 if equal
  */
 sortTable.compareRow = function(RowA, RowB) {
-	var valA, valB;
-	if ('function' != typeof sortTable[sortTable.sortFunc]) {
-		sortTable.sortFunc = 'string';
-	}
-	valA = sortTable[sortTable.sortFunc](RowA.cells[sortTable.sortCol]);
-	valB = sortTable[sortTable.sortFunc](RowB.cells[sortTable.sortCol]);
+    var valA, valB;
+    if ('function' != typeof sortTable[sortTable.sortFunc]) {
+        sortTable.sortFunc = 'string';
+    }
+    valA = sortTable[sortTable.sortFunc](RowA.cells[sortTable.sortCol]);
+    valB = sortTable[sortTable.sortFunc](RowB.cells[sortTable.sortCol]);
 
-	return valA == valB ? 0 : sortTable.sortDir * (valA > valB ? 1 : -1);
+    return valA == valB ? 0 : sortTable.sortDir * (valA > valB ? 1 : -1);
 };
 
 /**
@@ -92,7 +92,7 @@ sortTable.compareRow = function(RowA, RowB) {
  * @returns {string}
  */
 sortTable.stripTags = function(html) {
-	return html.replace(/<\/?[a-z][a-z0-9]*\b[^>]*>/gi, '');
+    return html.replace(/<\/?[a-z][a-z0-9]*\b[^>]*>/gi, '');
 };
 
 /**
@@ -103,7 +103,7 @@ sortTable.stripTags = function(html) {
  * @returns {Date}
  */
 sortTable.date = function(Cell) {
-	return new Date(sortTable.stripTags(Cell.innerHTML));
+    return new Date(sortTable.stripTags(Cell.innerHTML));
 };
 
 /**
@@ -114,7 +114,7 @@ sortTable.date = function(Cell) {
  * @returns {Number}
  */
 sortTable.number = function(Cell) {
-	return Number(sortTable.stripTags(Cell.innerHTML).replace(/\$|%|,/, ''));
+    return Number(sortTable.stripTags(Cell.innerHTML).replace(/\$|%|,/, ''));
 };
 
 /**
@@ -125,7 +125,7 @@ sortTable.number = function(Cell) {
  * @returns {String}
  */
 sortTable.string = function(Cell) {
-	return sortTable.stripTags(Cell.innerHTML).toLowerCase();
+    return sortTable.stripTags(Cell.innerHTML).toLowerCase();
 };
 
 /**
@@ -136,7 +136,7 @@ sortTable.string = function(Cell) {
  * @returns {String}
  */
 sortTable.last = function(Cell) {
-	return sortTable.stripTags(Cell.innerHTML).split(' ').pop().toLowerCase();
+    return sortTable.stripTags(Cell.innerHTML).split(' ').pop().toLowerCase();
 };
 
 /**
@@ -147,15 +147,15 @@ sortTable.last = function(Cell) {
  * @returns {String}
  */
 sortTable.input = function(Cell) {
-	for (var i = 0; i < Cell.children.length; i++) {
-		if ('object' == typeof Cell.children[i]
-			&& 'undefined' != typeof Cell.children[i].value
-		) {
-			return Cell.children[i].value.toLowerCase();
-		}
-	}
+    for (var i = 0; i < Cell.children.length; i++) {
+        if ('object' == typeof Cell.children[i]
+            && 'undefined' != typeof Cell.children[i].value
+        ) {
+            return Cell.children[i].value.toLowerCase();
+        }
+    }
 
-	return sortTable.string(Cell);
+    return sortTable.string(Cell);
 };
 
 /**
@@ -164,29 +164,29 @@ sortTable.input = function(Cell) {
  *  first row
  */
 sortTable.init = function() {
-	var THead,
-		Tables = document.querySelectorAll("table.js-sort-table");
+    var THead,
+        Tables = document.querySelectorAll("table.js-sort-table");
 
-	for (var i = 0; i < Tables.length; i++) {
-		if (!Tables[i].tHead) {
-			THead = document.createElement('thead');
-			THead.appendChild(Tables[i].rows[0]);
-			Tables[i].insertBefore(THead, Tables[i].children[0]);
-		} else {
-			THead = Tables[i].tHead;
-		}
-		for (var j = 0; j < THead.rows[0].cells.length; j++) {
-			THead.rows[0].cells[j].addEventListener('click', (function(Table, col) {
-				return function() {
-					sortTable(Table, col);
-				};
-			})(Tables[i], j));
-		}
-	}
+    for (var i = 0; i < Tables.length; i++) {
+        if (!Tables[i].tHead) {
+            THead = document.createElement('thead');
+            THead.appendChild(Tables[i].rows[0]);
+            Tables[i].insertBefore(THead, Tables[i].children[0]);
+        } else {
+            THead = Tables[i].tHead;
+        }
+        for (var j = 0; j < THead.rows[0].cells.length; j++) {
+            THead.rows[0].cells[j].addEventListener('click', (function(Table, col) {
+                return function() {
+                    sortTable(Table, col);
+                };
+            })(Tables[i], j));
+        }
+    }
 };
 
 //Run sortTable.init() when the page loads
 window.addEventListener
-	? window.addEventListener('load', sortTable.init, false)
-	: window.attachEvent && window.attachEvent('onload', sortTable.init)
-	;
+    ? window.addEventListener('load', sortTable.init, false)
+    : window.attachEvent && window.attachEvent('onload', sortTable.init)
+    ;

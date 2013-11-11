@@ -1,220 +1,220 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<meta charset='utf-8'>
-	<title>Demo for sort-table.js</title>
-	<script type="text/javascript" src="sort-table.js"></script>
-	<link rel="stylesheet" type="text/css" href="sort-table.css" title="">
-	<style type="text/css">
-		table { border: 1px solid black; border-collapse: collapse; }
+    <meta charset='utf-8'>
+    <title>Demo for sort-table.js</title>
+    <script type="text/javascript" src="sort-table.js"></script>
+    <link rel="stylesheet" type="text/css" href="sort-table.css" title="">
+    <style type="text/css">
+        table { border: 1px solid black; border-collapse: collapse; }
 
-		th, td { padding: 2px 5px; border: 1px solid black; }
+        th, td { padding: 2px 5px; border: 1px solid black; }
 
-		thead { background: #ddd; }
+        thead { background: #ddd; }
 
-		table#demo2.js-sort-0 tbody tr td:nth-child(1),
-		table#demo2.js-sort-1 tbody tr td:nth-child(2),
-		table#demo2.js-sort-2 tbody tr td:nth-child(3),
-		table#demo2.js-sort-3 tbody tr td:nth-child(4),
-		table#demo2.js-sort-4 tbody tr td:nth-child(5),
-		table#demo2.js-sort-5 tbody tr td:nth-child(6),
-		table#demo2.js-sort-6 tbody tr td:nth-child(7),
-		table#demo2.js-sort-7 tbody tr td:nth-child(8),
-		table#demo2.js-sort-8 tbody tr td:nth-child(9),
-		table#demo2.js-sort-9 tbody tr td:nth-child(10) {
-			background: #dee;
-		}
+        table#demo2.js-sort-0 tbody tr td:nth-child(1),
+        table#demo2.js-sort-1 tbody tr td:nth-child(2),
+        table#demo2.js-sort-2 tbody tr td:nth-child(3),
+        table#demo2.js-sort-3 tbody tr td:nth-child(4),
+        table#demo2.js-sort-4 tbody tr td:nth-child(5),
+        table#demo2.js-sort-5 tbody tr td:nth-child(6),
+        table#demo2.js-sort-6 tbody tr td:nth-child(7),
+        table#demo2.js-sort-7 tbody tr td:nth-child(8),
+        table#demo2.js-sort-8 tbody tr td:nth-child(9),
+        table#demo2.js-sort-9 tbody tr td:nth-child(10) {
+            background: #dee;
+        }
 
-	</style>
+    </style>
 </head>
 <body>
 <header>
-	<h1>Demo for sort-table.js</h1>
+    <h1>Demo for sort-table.js</h1>
 </header>
 
 
 <section id="body">
-	<p><b>sort-table.js</b> is a pure JavaScript (no dependencies) solution
-		to make HTML Tables sortable.</p>
+    <p><b>sort-table.js</b> is a pure JavaScript (no dependencies) solution
+        to make HTML Tables sortable.</p>
 
-	<h2>Basic Usage</h2>
-	<p>The basic table sorting functionality can be added simply by
-		including <b>sort-table.js</b> anywhere in your document and adding
-		CSS class 'js-sort-table' to all tables you want sortable.
-		It works like this:</p>
-	<table class="js-sort-table" id="demo1">
-		<caption>&lt;table class="js-sort-table"&gt;</caption>
-		<thead>
-		<tr>
-			<th class="js-sort-number">Row</th>
-			<th>Strings</th>
-			<th class="js-sort-date">Dates</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr>
-			<td>1</td>
-			<td>Shoe</td>
-			<td>9/11/2001</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td>Twine</td>
-			<td>12/7/1941</td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td>Thread</td>
-			<td>1/20/2008</td>
-		</tr>
-		<tr>
-			<td>4</td>
-			<td>Rope</td>
-			<td>9/17/1862</td>
-		</tr>
-		<tr>
-			<td>5</td>
-			<td>Yarn</td>
-			<td>8/6/1945</td>
-		</tr>
-		<tr>
-			<td>6</td>
-			<td>Nylon</td>
-			<td>7/4/1776</td>
-		</tr>
-		</tbody>
-	</table>
+    <h2>Basic Usage</h2>
+    <p>The basic table sorting functionality can be added simply by
+        including <b>sort-table.js</b> anywhere in your document and adding
+        CSS class 'js-sort-table' to all tables you want sortable.
+        It works like this:</p>
+    <table class="js-sort-table" id="demo1">
+        <caption>&lt;table class="js-sort-table"&gt;</caption>
+        <thead>
+        <tr>
+            <th class="js-sort-number">Row</th>
+            <th>Strings</th>
+            <th class="js-sort-date">Dates</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>Shoe</td>
+            <td>9/11/2001</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Twine</td>
+            <td>12/7/1941</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Thread</td>
+            <td>1/20/2008</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Rope</td>
+            <td>9/17/1862</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Yarn</td>
+            <td>8/6/1945</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Nylon</td>
+            <td>7/4/1776</td>
+        </tr>
+        </tbody>
+    </table>
 
-	<h2>Advanced Styling</h2>
-	<p><b>sort-table.js</b> uses CSS classes to track its state. This allows
-		for advanced styling by applying styles to the classes below.</p>
-	<p>Also demonstrated in the table below is the handling of
-		<code>thead</code>-less tables. If no <code>thead</code> is found in
-		the table, one will be created and the first row will be added to it.
-	</p>
+    <h2>Advanced Styling</h2>
+    <p><b>sort-table.js</b> uses CSS classes to track its state. This allows
+        for advanced styling by applying styles to the classes below.</p>
+    <p>Also demonstrated in the table below is the handling of
+        <code>thead</code>-less tables. If no <code>thead</code> is found in
+        the table, one will be created and the first row will be added to it.
+    </p>
 
-	<table class="js-sort-table" id="demo2">
-		<tr>
-			<td class="js-sort-number">Row</td>
-			<td>CSS class</td>
-			<td>Description</td>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>js-sort-table</td>
-			<td>Apply this to the table to indicate sortability</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td>js-sort-asc</td>
-			<td>This is applied to the table when sorting ascending</td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td>js-sort-desc</td>
-			<td>Likewise, this indicates descending sort</td>
-		</tr>
-		<tr>
-			<td>4</td>
-			<td>js-sort-0</td>
-			<td>The zero-based number of the sorted column</td>
-		</tr>
-		<tr>
-			<td>5</td>
-			<td>js-sort-string</td>
-			<td>By default, string sorting is used, making this optional</td>
-		</tr>
-		<tr>
-			<td>6</td>
-			<td>js-sort-date</td>
-			<td>When applied to a cell in the header, column will be interpreted as dates</td>
-		</tr>
-		<tr>
-			<td>7</td>
-			<td>js-sort-number</td>
-			<td>This tells sort-table to treat the column as numbers</td>
-		</tr>
-		<tr>
-			<td>8</td>
-			<td>js-sort-last</td>
-			<td>Set this class to a TH to sort by the last word in each cell</td>
-		</tr>
-		<tr>
-			<td>9</td>
-			<td>js-sort-input</td>
-			<td>If your table has form inputs, this allows sorting by their value</td>
-		</tr>
-	</table>
+    <table class="js-sort-table" id="demo2">
+        <tr>
+            <td class="js-sort-number">Row</td>
+            <td>CSS class</td>
+            <td>Description</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>js-sort-table</td>
+            <td>Apply this to the table to indicate sortability</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>js-sort-asc</td>
+            <td>This is applied to the table when sorting ascending</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>js-sort-desc</td>
+            <td>Likewise, this indicates descending sort</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>js-sort-0</td>
+            <td>The zero-based number of the sorted column</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>js-sort-string</td>
+            <td>By default, string sorting is used, making this optional</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>js-sort-date</td>
+            <td>When applied to a cell in the header, column will be interpreted as dates</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>js-sort-number</td>
+            <td>This tells sort-table to treat the column as numbers</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>js-sort-last</td>
+            <td>Set this class to a TH to sort by the last word in each cell</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>js-sort-input</td>
+            <td>If your table has form inputs, this allows sorting by their value</td>
+        </tr>
+    </table>
 
-	<h2>Advanced Sorting</h2>
-	<p>There are a few supported data types, and adding new ones is very
-		simple. To indicate the data type a column should be sorted as, add
-		its CSS class to the column's header (TH) tag. String sorting
-		is the default type. Below are demonstrated the included types. </p>
-	<form>
-		<table class="js-sort-table" id="demo3">
-			<thead>
-			<tr>
-				<th class="js-sort-number" title="class=&quot;js-sort-number&quot;">number</th>
-				<th class="js-sort-number" title="class=&quot;js-sort-number&quot;">number</th>
-				<th class="js-sort-string" title="class=&quot;js-sort-string&quot;">string (default)</th>
-				<th class="js-sort-date" title="class=&quot;js-sort-date&quot;">date</th>
-				<th class="js-sort-last" title="class=&quot;js-sort-last&quot;">last</th>
-				<th class="js-sort-input" title="class=&quot;js-sort-input&quot;">input</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr>
-				<td><a href="#f">1</a></td>
-				<td>123</td>
-				<td>Shoe</td>
-				<td>9/11/2001</td>
-				<td>John Doe</td>
-				<td><input type="text" size="6" name="a" value="What"/></td>
-			</tr>
-			<tr>
-				<td><a href="#e">2</a></td>
-				<td>21</td>
-				<td>Twine</td>
-				<td>12/7/1941</td>
-				<td>John Q Public</td>
-				<td><input type="text" size="6" name="ab" value="are"/></td>
-			</tr>
-			<tr>
-				<td><a href="#g">3</a></td>
-				<td>3</td>
-				<td>Thread</td>
-				<td>1/20/2008</td>
-				<td>John Smith</td>
-				<td><input type="text" size="6" name="c" value="six"/></td>
-			</tr>
-			<tr>
-				<td><a href="#q">4</a></td>
-				<td>42</td>
-				<td>Rope</td>
-				<td>9/17/1862</td>
-				<td>Joe T Plumber</td>
-				<td><input type="text" size="6" name="d" value="types"/></td>
-			</tr>
-			<tr>
-				<td><a href="#z">5</a></td>
-				<td>58</td>
-				<td>Yarn</td>
-				<td>8/6/1945</td>
-				<td>John</td>
-				<td><input type="text" size="6" name="e" value="of"/></td>
-			</tr>
-			<tr>
-				<td><a href="#a">6</a></td>
-				<td>6</td>
-				<td>Nylon</td>
-				<td>7/4/1776</td>
-				<td>John Johnson</td>
-				<td><input type="text" size="6" name="f" value="input?"/></td>
-			</tr>
-			</tbody>
-		</table>
-	</form>
+    <h2>Advanced Sorting</h2>
+    <p>There are a few supported data types, and adding new ones is very
+        simple. To indicate the data type a column should be sorted as, add
+        its CSS class to the column's header (TH) tag. String sorting
+        is the default type. Below are demonstrated the included types. </p>
+    <form>
+        <table class="js-sort-table" id="demo3">
+            <thead>
+            <tr>
+                <th class="js-sort-number" title="class=&quot;js-sort-number&quot;">number</th>
+                <th class="js-sort-number" title="class=&quot;js-sort-number&quot;">number</th>
+                <th class="js-sort-string" title="class=&quot;js-sort-string&quot;">string (default)</th>
+                <th class="js-sort-date" title="class=&quot;js-sort-date&quot;">date</th>
+                <th class="js-sort-last" title="class=&quot;js-sort-last&quot;">last</th>
+                <th class="js-sort-input" title="class=&quot;js-sort-input&quot;">input</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="#f">1</a></td>
+                <td>123</td>
+                <td>Shoe</td>
+                <td>9/11/2001</td>
+                <td>John Doe</td>
+                <td><input type="text" size="6" name="a" value="What"/></td>
+            </tr>
+            <tr>
+                <td><a href="#e">2</a></td>
+                <td>21</td>
+                <td>Twine</td>
+                <td>12/7/1941</td>
+                <td>John Q Public</td>
+                <td><input type="text" size="6" name="ab" value="are"/></td>
+            </tr>
+            <tr>
+                <td><a href="#g">3</a></td>
+                <td>3</td>
+                <td>Thread</td>
+                <td>1/20/2008</td>
+                <td>John Smith</td>
+                <td><input type="text" size="6" name="c" value="six"/></td>
+            </tr>
+            <tr>
+                <td><a href="#q">4</a></td>
+                <td>42</td>
+                <td>Rope</td>
+                <td>9/17/1862</td>
+                <td>Joe T Plumber</td>
+                <td><input type="text" size="6" name="d" value="types"/></td>
+            </tr>
+            <tr>
+                <td><a href="#z">5</a></td>
+                <td>58</td>
+                <td>Yarn</td>
+                <td>8/6/1945</td>
+                <td>John</td>
+                <td><input type="text" size="6" name="e" value="of"/></td>
+            </tr>
+            <tr>
+                <td><a href="#a">6</a></td>
+                <td>6</td>
+                <td>Nylon</td>
+                <td>7/4/1776</td>
+                <td>John Johnson</td>
+                <td><input type="text" size="6" name="f" value="input?"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
 
 </section>
 

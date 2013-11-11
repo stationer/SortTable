@@ -12,10 +12,10 @@ table.js-sort-asc.js-sort-7 thead tr > :nth-child(8):after,
 table.js-sort-asc.js-sort-8 thead tr > :nth-child(9):after,
 table.js-sort-asc.js-sort-9 thead tr > :nth-child(10):after
 {
-	content: "\25b2";
-	font-size: 0.7em;
-	padding-left: 3px;
-	line-height: 0.7em;
+    content: "\25b2";
+    font-size: 0.7em;
+    padding-left: 3px;
+    line-height: 0.7em;
 }
 table.js-sort-desc.js-sort-0 thead tr > :nth-child(1):after,
 table.js-sort-desc.js-sort-1 thead tr > :nth-child(2):after,
@@ -28,8 +28,8 @@ table.js-sort-desc.js-sort-7 thead tr > :nth-child(8):after,
 table.js-sort-desc.js-sort-8 thead tr > :nth-child(9):after,
 table.js-sort-desc.js-sort-9 thead tr > :nth-child(10):after
 {
-	content: "\25bc";
-	font-size: 0.7em;
-	padding-left: 3px;
-	line-height: 0.7em;
+    content: "\25bc";
+    font-size: 0.7em;
+    padding-left: 3px;
+    line-height: 0.7em;
 }
