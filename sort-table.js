@@ -44,7 +44,7 @@ function sortTable(Table, col) {
     Table.className += ' js-sort-' + (sortTable.sortDir == -1 ? 'desc' : 'asc');
 
     //get sort type
-    sortClass = Table.tHead.rows[0].cells[col].className.match(/js-sort-[-\w]+/);
+    sortClass = Table.tHead.rows[Table.tHead.rows.length-1].cells[col].className.match(/js-sort-[-\w]+/);
     if (null != sortClass) {
         sortTable.sortFunc = sortClass[0].replace(/js-sort-/, '');
     } else {
@@ -183,12 +183,15 @@ sortTable.init = function() {
         }
 
         // Attach click events to table header
-        for (var j = 0; j < THead.rows[0].cells.length; j++) {
-            THead.rows[0].cells[j].addEventListener('click', (function(Table, col) {
-                return function() {
-                    sortTable(Table, col);
-                };
-            })(Tables[i], j));
+        for (var rowNum = 0; rowNum < THead.rows.length; rowNum++) {
+            for (var cellNum = 0, colNum = 0; cellNum < THead.rows[rowNum].cells.length; cellNum++) {
+                THead.rows[rowNum].cells[cellNum].addEventListener('click', (function(Table, col) {
+                    return function() {
+                        sortTable(Table, col);
+                    };
+                })(Tables[i], colNum));
+                colNum += THead.rows[rowNum].cells[cellNum].colSpan;
+            }
         }
 
         // Mark table as processed

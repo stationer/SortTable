@@ -1,32 +1,32 @@
 /* These style add the up/down arrows for the current sorted column
  * To support more columns, just augment these styles in like form.
  */
-table.js-sort-asc.js-sort-0 thead tr > :nth-child(1):after,
-table.js-sort-asc.js-sort-1 thead tr > :nth-child(2):after,
-table.js-sort-asc.js-sort-2 thead tr > :nth-child(3):after,
-table.js-sort-asc.js-sort-3 thead tr > :nth-child(4):after,
-table.js-sort-asc.js-sort-4 thead tr > :nth-child(5):after,
-table.js-sort-asc.js-sort-5 thead tr > :nth-child(6):after,
-table.js-sort-asc.js-sort-6 thead tr > :nth-child(7):after,
-table.js-sort-asc.js-sort-7 thead tr > :nth-child(8):after,
-table.js-sort-asc.js-sort-8 thead tr > :nth-child(9):after,
-table.js-sort-asc.js-sort-9 thead tr > :nth-child(10):after
+table.js-sort-asc.js-sort-0 thead tr:last-child > :nth-child(1):after,
+table.js-sort-asc.js-sort-1 thead tr:last-child > :nth-child(2):after,
+table.js-sort-asc.js-sort-2 thead tr:last-child > :nth-child(3):after,
+table.js-sort-asc.js-sort-3 thead tr:last-child > :nth-child(4):after,
+table.js-sort-asc.js-sort-4 thead tr:last-child > :nth-child(5):after,
+table.js-sort-asc.js-sort-5 thead tr:last-child > :nth-child(6):after,
+table.js-sort-asc.js-sort-6 thead tr:last-child > :nth-child(7):after,
+table.js-sort-asc.js-sort-7 thead tr:last-child > :nth-child(8):after,
+table.js-sort-asc.js-sort-8 thead tr:last-child > :nth-child(9):after,
+table.js-sort-asc.js-sort-9 thead tr:last-child > :nth-child(10):after
 {
     content: "\25b2";
     font-size: 0.7em;
     padding-left: 3px;
     line-height: 0.7em;
 }
-table.js-sort-desc.js-sort-0 thead tr > :nth-child(1):after,
-table.js-sort-desc.js-sort-1 thead tr > :nth-child(2):after,
-table.js-sort-desc.js-sort-2 thead tr > :nth-child(3):after,
-table.js-sort-desc.js-sort-3 thead tr > :nth-child(4):after,
-table.js-sort-desc.js-sort-4 thead tr > :nth-child(5):after,
-table.js-sort-desc.js-sort-5 thead tr > :nth-child(6):after,
-table.js-sort-desc.js-sort-6 thead tr > :nth-child(7):after,
-table.js-sort-desc.js-sort-7 thead tr > :nth-child(8):after,
-table.js-sort-desc.js-sort-8 thead tr > :nth-child(9):after,
-table.js-sort-desc.js-sort-9 thead tr > :nth-child(10):after
+table.js-sort-desc.js-sort-0 thead tr:last-child > :nth-child(1):after,
+table.js-sort-desc.js-sort-1 thead tr:last-child > :nth-child(2):after,
+table.js-sort-desc.js-sort-2 thead tr:last-child > :nth-child(3):after,
+table.js-sort-desc.js-sort-3 thead tr:last-child > :nth-child(4):after,
+table.js-sort-desc.js-sort-4 thead tr:last-child > :nth-child(5):after,
+table.js-sort-desc.js-sort-5 thead tr:last-child > :nth-child(6):after,
+table.js-sort-desc.js-sort-6 thead tr:last-child > :nth-child(7):after,
+table.js-sort-desc.js-sort-7 thead tr:last-child > :nth-child(8):after,
+table.js-sort-desc.js-sort-8 thead tr:last-child > :nth-child(9):after,
+table.js-sort-desc.js-sort-9 thead tr:last-child > :nth-child(10):after
 {
     content: "\25bc";
     font-size: 0.7em;
