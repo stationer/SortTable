@@ -114,7 +114,7 @@ sortTable.date = function(Cell) {
  * @returns {Number}
  */
 sortTable.number = function(Cell) {
-    return Number(sortTable.stripTags(Cell.innerHTML).replace(/\$|%|,/, ''));
+    return Number(sortTable.stripTags(Cell.innerHTML).replace(/\$|%|,/g, ''));
 };
 
 /**
