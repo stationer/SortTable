@@ -15,9 +15,10 @@
  *
  * @param Table The Table DOM object
  * @param col   The zero-based column number by which to sort
+ * @param dir   Optional. The sort direction; pass 1 for asc; -1 for desc
  * @returns void
  */
-function sortTable(Table, col) {
+function sortTable(Table, col, dir) {
     var sortClass;
 
     //get previous sort column
@@ -27,12 +28,22 @@ function sortTable(Table, col) {
         sortTable.sortCol = sortClass[0].replace(/js-sort-/, '');
         Table.className = Table.className.replace(new RegExp(' ?' + sortClass[0] + '\\b'), '');
     }
+    // If sort column was not passed, use previous
+    if ('undefined' === typeof col) {
+        col = sortTable.sortCol;
+    }
 
-    //get previous sort direction
-    sortTable.sortDir = 1;
-    sortClass = Table.className.match(/js-sort-(a|de)sc/);
-    if (null != sortClass && sortTable.sortCol == col) {
-        sortTable.sortDir = 'js-sort-asc' == sortClass[0] ? -1 : 1;
+    if ('undefined' !== typeof dir) {
+        // Accept -1 or 'desc' for descending.  All else is ascending
+        sortTable.sortDir = dir == -1 || dir == 'desc' ? -1 : 1;
+    } else {
+        // sort direction was not passed, use opposite of previous
+        sortClass = Table.className.match(/js-sort-(a|de)sc/);
+        if (null != sortClass && sortTable.sortCol == col) {
+            sortTable.sortDir = 'js-sort-asc' == sortClass[0] ? -1 : 1;
+        } else {
+            sortTable.sortDir = 1;
+        }
     }
     Table.className = Table.className.replace(/ ?js-sort-(a|de)sc/g, '');
 

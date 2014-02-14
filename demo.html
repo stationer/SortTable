@@ -218,6 +218,18 @@
             </tr>
             </tbody>
         </table>
+
+        <p>Manual calls to tableSort can be made, </p>
+        <ul>
+            <li>such as this one that sorts descending by the second column:
+                <button onclick="sortTable(document.getElementById('demo3'), 1, -1);"><code>sortTable(Table, 1,
+                    -1);</code></button>
+            </li>
+            <li>or this one that re-sorts the table in the event that something else adjusted it:
+                <button onclick="sortTable(document.getElementById('demo3'));"><code>sortTable(Table);</code>
+                </button>
+            </li>
+        </ul>
     </form>
 
 </section>
