@@ -170,17 +170,39 @@ sortTable.input = function(Cell) {
 };
 
 /**
+ * Return the click handler appropriate to the specified Table and column
+ *
+ * @param Table Table to sort
+ * @param col   Column to sort by
+ * @returns {Function} Click Handler
+ */
+sortTable.getClickHandler = function(Table, col) {
+    return function() {
+        sortTable(Table, col);
+    };
+}
+
+/**
  * Attach sortTable() calls to table header cells' onclick events
  * If the table(s) do not have a THead node, one will be created around the
  *  first row
  */
 sortTable.init = function() {
-    var THead,
-        Tables = document.querySelectorAll("table.js-sort-table");
+    var THead, Tables, Handler;
+    if (document.querySelectorAll) {
+        Tables = document.querySelectorAll('table.js-sort-table');
+    } else {
+        Tables = document.getElementsByTagName('table');
+    }
 
     for (var i = 0; i < Tables.length; i++) {
+        // Because IE<8 doesn't support querySelectorAll, skip unclassed tables
+        if (!document.querySelectorAll && null === Tables[i].className.match(/\bjs-sort-table\b/)) {
+            continue;
+        }
+
         // Prevent repeat processing
-        if (Tables[i].hasAttribute('data-js-sort-table')) {
+        if (Tables[i].attributes['data-js-sort-table']) {
             continue;
         }
 
@@ -196,11 +218,10 @@ sortTable.init = function() {
         // Attach click events to table header
         for (var rowNum = 0; rowNum < THead.rows.length; rowNum++) {
             for (var cellNum = 0, colNum = 0; cellNum < THead.rows[rowNum].cells.length; cellNum++) {
-                THead.rows[rowNum].cells[cellNum].addEventListener('click', (function(Table, col) {
-                    return function() {
-                        sortTable(Table, col);
-                    };
-                })(Tables[i], colNum));
+                Handler = sortTable.getClickHandler(Tables[i], colNum);
+                window.addEventListener
+                    ? THead.rows[rowNum].cells[cellNum].addEventListener('click', Handler)
+                    : window.attachEvent && THead.rows[rowNum].cells[cellNum].attachEvent('onclick', Handler);
                 colNum += THead.rows[rowNum].cells[cellNum].colSpan;
             }
         }
