@@ -21,7 +21,7 @@
 function sortTable(Table, col, dir) {
     var sortClass;
 
-    //get previous sort column
+    // get previous sort column
     sortTable.sortCol = -1;
     sortClass = Table.className.match(/js-sort-\d+/);
     if (null != sortClass) {
@@ -47,14 +47,14 @@ function sortTable(Table, col, dir) {
     }
     Table.className = Table.className.replace(/ ?js-sort-(a|de)sc/g, '');
 
-    //update sort column
+    // update sort column
     Table.className += ' js-sort-' + col;
     sortTable.sortCol = col;
 
-    //update sort direction
+    // update sort direction
     Table.className += ' js-sort-' + (sortTable.sortDir == -1 ? 'desc' : 'asc');
 
-    //get sort type
+    // get sort type
     sortClass = Table.tHead.rows[Table.tHead.rows.length-1].cells[col].className.match(/js-sort-[-\w]+/);
     if (null != sortClass) {
         sortTable.sortFunc = sortClass[0].replace(/js-sort-/, '');
@@ -62,7 +62,7 @@ function sortTable(Table, col, dir) {
         sortTable.sortFunc = 'string';
     }
 
-    //sort!
+    // sort!
     var rows = [],
         TBody = Table.tBodies[0];
 
@@ -180,7 +180,7 @@ sortTable.getClickHandler = function(Table, col) {
     return function() {
         sortTable(Table, col);
     };
-}
+};
 
 /**
  * Attach sortTable() calls to table header cells' onclick events
@@ -231,7 +231,7 @@ sortTable.init = function() {
     }
 };
 
-//Run sortTable.init() when the page loads
+// Run sortTable.init() when the page loads
 window.addEventListener
     ? window.addEventListener('load', sortTable.init, false)
     : window.attachEvent && window.attachEvent('onload', sortTable.init)
