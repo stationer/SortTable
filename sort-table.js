@@ -19,7 +19,7 @@
  * @returns void
  */
 function sortTable(Table, col, dir) {
-    var sortClass;
+    var sortClass, i;
 
     // get previous sort column
     sortTable.sortCol = -1;
@@ -55,7 +55,15 @@ function sortTable(Table, col, dir) {
     Table.className += ' js-sort-' + (sortTable.sortDir == -1 ? 'desc' : 'asc');
 
     // get sort type
-    sortClass = Table.tHead.rows[Table.tHead.rows.length-1].cells[col].className.match(/js-sort-[-\w]+/);
+    if (col < Table.tHead.rows[Table.tHead.rows.length - 1].cells.length) {
+        sortClass = Table.tHead.rows[Table.tHead.rows.length - 1].cells[col].className.match(/js-sort-[-\w]+/);
+    }
+    // Improved support for colspan'd headers
+    for (i = 0; i < Table.tHead.rows[Table.tHead.rows.length - 1].cells.length; i++) {
+        if (col == Table.tHead.rows[Table.tHead.rows.length - 1].cells[i].getAttribute('data-js-sort-colNum')) {
+            sortClass = Table.tHead.rows[Table.tHead.rows.length - 1].cells[i].className.match(/js-sort-[-\w]+/);
+        }
+    }
     if (null != sortClass) {
         sortTable.sortFunc = sortClass[0].replace(/js-sort-/, '');
     } else {
@@ -66,7 +74,7 @@ function sortTable(Table, col, dir) {
     var rows = [],
         TBody = Table.tBodies[0];
 
-    for (var i = 0; i < TBody.rows.length; i++) {
+    for (i = 0; i < TBody.rows.length; i++) {
         rows[i] = TBody.rows[i];
     }
     rows.sort(sortTable.compareRow);
@@ -218,6 +226,8 @@ sortTable.init = function() {
         // Attach click events to table header
         for (var rowNum = 0; rowNum < THead.rows.length; rowNum++) {
             for (var cellNum = 0, colNum = 0; cellNum < THead.rows[rowNum].cells.length; cellNum++) {
+                // Define which column the header should invoke sorting for
+                THead.rows[rowNum].cells[cellNum].setAttribute('data-js-sort-colNum', colNum);
                 Handler = sortTable.getClickHandler(Tables[i], colNum);
                 window.addEventListener
                     ? THead.rows[rowNum].cells[cellNum].addEventListener('click', Handler)
