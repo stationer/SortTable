@@ -69,6 +69,13 @@ function sortTable(Table, col, dir) {
     } else {
         sortTable.sortFunc = 'string';
     }
+    // Set the headers for the active column to have the decorative class
+    Table.querySelectorAll('.js-sort-active').forEach(function(Node){
+        Node.className = Node.className.replace(/ ?js-sort-active\b/, '');
+    });
+    Table.querySelectorAll('[data-js-sort-colNum="' + col + '"]:not(:empty)').forEach(function(Node) {
+        Node.className += ' js-sort-active';
+    });
 
     // sort!
     var rows = [],
@@ -239,6 +246,13 @@ sortTable.init = function() {
         // Mark table as processed
         Tables[i].setAttribute('data-js-sort-table', 'true')
     }
+
+    // Add default styles as the first style in head so they can be easily overwritten by user styles
+    var element = document.createElement('style');
+    document.head.insertBefore(element, document.head.childNodes[0]);
+    var sheet = element.sheet;
+    sheet.insertRule('table.js-sort-asc thead tr > .js-sort-active:after{content:"\\25b2";font-size:0.7em;padding-left:3px;line-height:0.7em;}');
+    sheet.insertRule('table.js-sort-desc thead tr > .js-sort-active:after{content:"\\25bc";font-size:0.7em;padding-left:3px;line-height:0.7em;}');
 };
 
 // Run sortTable.init() when the page loads
