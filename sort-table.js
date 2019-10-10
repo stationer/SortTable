@@ -70,7 +70,7 @@ function sortTable(Table, col, dir) {
         sortTable.sortFunc = 'string';
     }
     // Set the headers for the active column to have the decorative class
-    Table.querySelectorAll('.js-sort-active').forEach(function(Node){
+    Table.querySelectorAll('.js-sort-active').forEach(function(Node) {
         Node.className = Node.className.replace(/ ?js-sort-active\b/, '');
     });
     Table.querySelectorAll('[data-js-sort-colNum="' + col + '"]:not(:empty)').forEach(function(Node) {
@@ -84,7 +84,9 @@ function sortTable(Table, col, dir) {
     for (i = 0; i < TBody.rows.length; i++) {
         rows[i] = TBody.rows[i];
     }
-    rows.sort(sortTable.compareRow);
+    if ('none' != sortTable.sortFunc) {
+        rows.sort(sortTable.compareRow);
+    }
 
     while (TBody.firstChild) {
         TBody.removeChild(TBody.firstChild);
@@ -123,13 +125,19 @@ sortTable.stripTags = function(html) {
 
 /**
  * Helper function that converts a table cell (TD) to a comparable value
- * Converts innerHTML to a JS Date object
+ * Converts innerHTML to a timestamp, 0 for invalid dates
  *
  * @param Cell A TD DOM object
- * @returns {Date}
+ * @returns {Number}
  */
 sortTable.date = function(Cell) {
-    return new Date(sortTable.stripTags(Cell.innerHTML));
+    // If okDate library is available, Use it for advanced Date processing
+    if (okDate) {
+        var Date = okDate(sortTable.stripTags(Cell.innerHTML));
+        return Date ? Date.getTime() : 0;
+    } else {
+        return (new Date(sortTable.stripTags(Cell.innerHTML))).getTime() || 0;
+    }
 };
 
 /**
@@ -152,6 +160,16 @@ sortTable.number = function(Cell) {
  */
 sortTable.string = function(Cell) {
     return sortTable.stripTags(Cell.innerHTML).toLowerCase();
+};
+
+/**
+ * Helper function that converts a table cell (TD) to a comparable value
+ *
+ * @param Cell A TD DOM object
+ * @returns {String}
+ */
+sortTable.raw = function(Cell) {
+    return Cell.innerHTML;
 };
 
 /**
@@ -182,6 +200,16 @@ sortTable.input = function(Cell) {
     }
 
     return sortTable.string(Cell);
+};
+
+/**
+ * Helper function that prevents sorting by always returning null
+ *
+ * @param Cell A TD DOM object
+ * @returns null
+ */
+sortTable.none = function(Cell) {
+    return null;
 };
 
 /**
@@ -251,8 +279,8 @@ sortTable.init = function() {
     var element = document.createElement('style');
     document.head.insertBefore(element, document.head.childNodes[0]);
     var sheet = element.sheet;
-    sheet.insertRule('table.js-sort-asc thead tr > .js-sort-active:after{content:"\\25b2";font-size:0.7em;padding-left:3px;line-height:0.7em;}', 0);
-    sheet.insertRule('table.js-sort-desc thead tr > .js-sort-active:after{content:"\\25bc";font-size:0.7em;padding-left:3px;line-height:0.7em;}', 0);
+    sheet.insertRule('table.js-sort-asc thead tr > .js-sort-active:not(.js-sort-none):after {content: "\\25b2";font-size: 0.7em;padding-left: 3px;line-height: 0.7em;}', 0);
+    sheet.insertRule('table.js-sort-desc thead tr > .js-sort-active:not(.js-sort-none):after {content: "\\25bc";font-size: 0.7em;padding-left: 3px;line-height: 0.7em;}', 0);
 };
 
 // Run sortTable.init() when the page loads
