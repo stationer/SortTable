@@ -251,8 +251,8 @@ sortTable.init = function() {
     var element = document.createElement('style');
     document.head.insertBefore(element, document.head.childNodes[0]);
     var sheet = element.sheet;
-    sheet.insertRule('table.js-sort-asc thead tr > .js-sort-active:after{content:"\\25b2";font-size:0.7em;padding-left:3px;line-height:0.7em;}');
-    sheet.insertRule('table.js-sort-desc thead tr > .js-sort-active:after{content:"\\25bc";font-size:0.7em;padding-left:3px;line-height:0.7em;}');
+    sheet.insertRule('table.js-sort-asc thead tr > .js-sort-active:after{content:"\\25b2";font-size:0.7em;padding-left:3px;line-height:0.7em;}', 0);
+    sheet.insertRule('table.js-sort-desc thead tr > .js-sort-active:after{content:"\\25bc";font-size:0.7em;padding-left:3px;line-height:0.7em;}', 0);
 };
 
 // Run sortTable.init() when the page loads
@@ -260,3 +260,8 @@ window.addEventListener
     ? window.addEventListener('load', sortTable.init, false)
     : window.attachEvent && window.attachEvent('onload', sortTable.init)
     ;
+
+// Shim for IE11's lack of NodeList.prototype.forEach
+if (typeof NodeList.prototype.forEach !== "function") {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+}
