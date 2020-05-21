@@ -261,6 +261,10 @@ sortTable.init = function() {
         // Attach click events to table header
         for (var rowNum = 0; rowNum < THead.rows.length; rowNum++) {
             for (var cellNum = 0, colNum = 0; cellNum < THead.rows[rowNum].cells.length; cellNum++) {
+                // Skip headers marked "js-sort-none"
+                if (THead.rows[rowNum].cells[cellNum].className.match(/\bjs-sort-none\b/)) {
+                    continue;
+                }
                 // Define which column the header should invoke sorting for
                 THead.rows[rowNum].cells[cellNum].setAttribute('data-js-sort-colNum', colNum);
                 Handler = sortTable.getClickHandler(Tables[i], colNum);
