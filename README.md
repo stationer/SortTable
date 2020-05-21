@@ -9,8 +9,8 @@ Usage
 =====
 
 Include sort-table.js anywhere in your page, it runs on load.  
-Add CSS class 'js-sort' to all tables you want sortable.  
-Optionally include sort-table.css (or its contents) in your styles.  
+Add CSS class `js-sort-table` to all tables you want sortable.  
+Optionally override styles for `table.js-sort-table` in your styles.  
 
 
 Support
