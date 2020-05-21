@@ -132,9 +132,9 @@ sortTable.stripTags = function(html) {
  */
 sortTable.date = function(Cell) {
     // If okDate library is available, Use it for advanced Date processing
-    if (okDate) {
-        var Date = okDate(sortTable.stripTags(Cell.innerHTML));
-        return Date ? Date.getTime() : 0;
+    if (typeof okDate !== 'undefined') {
+        var kDate = okDate(sortTable.stripTags(Cell.innerHTML));
+        return kDate ? kDate.getTime() : 0;
     } else {
         return (new Date(sortTable.stripTags(Cell.innerHTML))).getTime() || 0;
     }
